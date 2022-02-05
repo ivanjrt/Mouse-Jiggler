@@ -66,17 +66,12 @@ public static void LeftClickAtPoint(int x, int y)
 '@
 $TypeDef = Add-Type -TypeDefinition $cSource -ReferencedAssemblies System.Windows.Forms,System.Drawing
 
-#Send a click at a specified point
-#[Clicker]::LeftClickAtPoint(3425,900)
-
 
 $left = 1 #1050
 while($true) {
     [Clicker]::LeftClickAtPoint($left,900)
     sleep -Seconds 3
-    if($Host.UI.RawUI.KeyAvailable -and ("q" -eq $Host.UI.RawUI.ReadKey("IncludeKeyup,NoEcho").Character)) {
-        #Write-Host "Exiting now, don't try to stop me...." -BackgroundColor DarkRed
-        
+    if($Host.UI.RawUI.KeyAvailable -and ("e" -eq $Host.UI.RawUI.ReadKey("IncludeKeyup,NoEcho").Character)) {
         break;
     }
        
