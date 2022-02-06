@@ -82,7 +82,7 @@ while($true) {
 ```
 
 # Scroll-Lock Jiggler -it will press the Scroll Key -Only Works in Consoles not ISE
-``` Ruby
+``` JavaScript
 Clear-Host
 $WShell = New-Object -com "Wscript.Shell"
 $stopwatch = $null
@@ -94,7 +94,7 @@ try {
 }
 Write-Output "Start Scrolling time: $(Get-Date -Format "dddd MM/dd hh:mm:ss tt (K)") UTC"
 
-#This doens't work in the ISE console
+
 $notpressed = $true
 while($notpressed){
     if([console]::KeyAvailable){
@@ -111,4 +111,3 @@ while($notpressed){
 $stopwatch.Stop() 
 Write-Host -ForegroundColor Cyan "I was Scrolling for Total of: " $stopwatch.Elapsed.ToString('dd\.hh\:mm\:ss')
 ```
-
