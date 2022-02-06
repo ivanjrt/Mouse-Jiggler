@@ -1,4 +1,4 @@
-# Mouse-Jiggler
+# Mouse-Jiggler - The mouse will click as it moves
 ``` Javascript
 $cSource = @'
 using System;
@@ -69,7 +69,7 @@ $TypeDef = Add-Type -TypeDefinition $cSource -ReferencedAssemblies System.Window
 
 $left = 1 #1050
 while($true) {
-    [Clicker]::LeftClickAtPoint($left,900)
+    [Clicker]::LeftClickAtPoint($left,900) #If want the mouse to be still, set $left to specific number
     sleep -Seconds 3
     if($Host.UI.RawUI.KeyAvailable -and ("e" -eq $Host.UI.RawUI.ReadKey("IncludeKeyup,NoEcho").Character)) {
         break;
@@ -80,3 +80,35 @@ while($true) {
     if ($left -eq 3425){$left = 1}
 }
 ```
+
+# Scroll-Lock Jiggler -it will press the Scroll Key -Only Works in Consoles not ISE
+``` Ruby
+Clear-Host
+$WShell = New-Object -com "Wscript.Shell"
+$stopwatch = $null
+
+try {
+    $stopwatch = [system.diagnostics.stopwatch]::StartNew()
+} catch {
+   Write-Host "Couldn't start the stopwatch."
+}
+Write-Output "Start Scrolling time: $(Get-Date -Format "dddd MM/dd hh:mm:ss tt (K)") UTC"
+
+#This doens't work in the ISE console
+$notpressed = $true
+while($notpressed){
+    if([console]::KeyAvailable){
+        $notpressed = $false    
+    }    
+    else{
+        Write-Host ":)" -ForegroundColor red
+        $WShell.sendkeys("{SCROLLLOCK}")
+        Write-Output "Elapse Time yet: " $stopwatch.Elapsed.ToString('dd\.hh\:mm\:ss')
+        Write-Output "-Press ANY keys to exit-"
+        Start-Sleep -Seconds 10 #Change this to setup a different loop interval
+    }
+}
+$stopwatch.Stop() 
+Write-Host -ForegroundColor Cyan "I was Scrolling for Total of: " $stopwatch.Elapsed.ToString('dd\.hh\:mm\:ss')
+```
+
