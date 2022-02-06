@@ -101,7 +101,6 @@ while($notpressed){
         $notpressed = $false    
     }    
     else{
-        Write-Host ":)" -ForegroundColor red
         $WShell.sendkeys("{SCROLLLOCK}")
         Write-Output "Elapse Time yet: " $stopwatch.Elapsed.ToString('dd\.hh\:mm\:ss')
         Write-Output "-Press ANY keys to exit-"
