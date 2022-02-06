@@ -94,7 +94,6 @@ try {
 }
 Write-Output "Start Scrolling time: $(Get-Date -Format "dddd MM/dd hh:mm:ss tt (K)") UTC"
 
-
 $notpressed = $true
 while($notpressed){
     if([console]::KeyAvailable){
